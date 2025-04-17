@@ -23,14 +23,6 @@ const AddUser = () => {
       // formData.append("pdf", data.pdf);
 
       const data = new FormData();
-
-      data.append("name", name);
-      for (var x = 0; x < file.length; x++) {
-        data.append("uploaded_Image", file[x]);
-      }
-      for (var x = 0; x < video.length; x++) {
-        data.append("uploaded_Image", video[x]);
-      }
       for (var x = 0; x < pdf.length; x++) {
         data.append("uploaded_Image", pdf[x]);
       }
@@ -42,9 +34,7 @@ const AddUser = () => {
       });
       if (res.ok) {
         setName("");
-        setFile(null);
         setPdf(null);
-        setVideo(null);
         history.replace("/");
       }
     } catch (error) {
@@ -56,23 +46,6 @@ const AddUser = () => {
     <div style={{ maxWidth: 500, margin: "auto" }}>
       {/* <pre>{file!=null && file.length}</pre> */}
       <form onSubmit={upload} encType="multipart/form-data" >
-  <div className="form-group">  
-  <input type="text"  placeholder="Name" value={name} required
-   onChange={e=>{setName(e.target.value)}}
-   className="form-control"/>
-   </div>
-    Upload Photo
-   <div className="form-group">
-    <input type="file" multiple required filename="uploaded_Image"
-     className="form-control-file" 
-    onChange={e => {setFile(e.target.files)}}/>
-</div>
-Upload Video
-<div className="form-group">
-    <input type="file" multiple required filename="uploaded_Image"
-     className="form-control-file" 
-    onChange={e => {setVideo(e.target.files)}}/>
-</div>
 Upload Pdf
 <div className="form-group">
     <input type="file" multiple required filename="uploaded_Image"
